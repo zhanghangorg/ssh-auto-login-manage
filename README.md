@@ -8,20 +8,20 @@ You can use these scripts instead of SecureCRT.
 Refer to [ssh-auto-login](https://github.com/liaohuqiu/ssh-auto-login) and [sshgo](https://github.com/emptyhua/sshgo).
 
 ###How to use
-1. Modify file `login.sh`, use your own name and password
+1. Modify file `login.sh`, use your own default  username and password for hostname that not set in hosts file:
  - user="admin"
  - password="admin123456"
-2. Modify file `hosts`, use your hosts:
+2. Modify file `hosts`, use your hosts, you can set the special username & password for each hostname, split with blankspace. Will use the default username & password that defined in the login.sh file if the hostname without username & password :
 
     ```
     Offline
         Dev
-            1.1.1.0
+            1.1.1.0  user1 password1
             1.1.1.1
             2.2.2.2
         Daily
-            3.3.3.3
-            3.3.3.3
+            3.3.3.3 user2 password2
+            3.3.3.4
     Online
         login1.gateway.net
         login2.gateway.net

@@ -1,11 +1,11 @@
 Offline
     Dev
-        1.1.1.0
+        1.1.1.0  user1  password1
         1.1.1.1
         2.2.2.2
     Daily
-        3.3.3.3
-        3.3.3.3
+        3.3.3.3  user2  password2
+        3.3.3.4
 Online
     login1.gateway.net
     login2.gateway.net

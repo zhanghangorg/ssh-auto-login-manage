@@ -2,12 +2,17 @@
 cd "`dirname $0`"
 BASE_HOME=`pwd`
 
-if [ $# != 1 ]; then
-    echo "Usage: $0 hostname"
-    exit 1
+host=$1
+#default user & password
+user='username'
+password='password'
+
+if [ $2 ]; then
+    user=$2
 fi
 
-host=$1
-user="admin"
-password="admin123456"
+if [ $3 ]; then
+    password=$3
+fi
+
 ./auto_login.exp $host $user $password
