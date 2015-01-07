@@ -9,7 +9,7 @@ Refer to [ssh-auto-login](https://github.com/liaohuqiu/ssh-auto-login) and [sshg
 
 ###How to use
 1. `git clone https://github.com/upton/ssh-auto-login-manage`
-2. Modify file `hosts`, use your hosts, you can set the special username & password for each hostname, split with blankspace. Will use the default username & password that defined in the `login.sh` file if the hostname without username & password :
+2. Modify file `/path/to/ssh-auto-login-manage/hosts`, use your hosts, you can set the special username & password for each hostname, split with blankspace. Will use the default username & password that defined in the `/path/to/ssh-auto-login-manage/login.sh` file if the hostname without username & password :
 
     ```
     deploy
@@ -21,7 +21,7 @@ Refer to [ssh-auto-login](https://github.com/liaohuqiu/ssh-auto-login) and [sshg
         login1.gateway.net user3 password3
         login2.gateway.net
     ```
-3. Modify file `login.sh`, use your own default username and password for hostname that not set in hosts file:
+3. Modify file `/path/to/ssh-auto-login-manage/login.sh`, use your own default username and password for hostname that not set in hosts file:
  - user="admin"
  - password="admin123456"   
 4. Run script `sshgo`, or you can alias `sshgo` command, add the line to the end of ~/.bash_profile and source it:
