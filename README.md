@@ -8,7 +8,7 @@ You can use these scripts instead of SecureCRT.
 Refer to [ssh-auto-login](https://github.com/liaohuqiu/ssh-auto-login) and [sshgo](https://github.com/emptyhua/sshgo).
 
 ###How to use
-1.
+1. git clone https://github.com/upton/ssh-auto-login-manage
 2. Modify file `login.sh`, use your own default username and password for hostname that not set in hosts file:
  - user="admin"
  - password="admin123456"
