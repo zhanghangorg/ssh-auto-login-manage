@@ -8,44 +8,28 @@ You can use these scripts instead of SecureCRT.
 Refer to [ssh-auto-login](https://github.com/liaohuqiu/ssh-auto-login) and [sshgo](https://github.com/emptyhua/sshgo).
 
 ###How to use
-1. Modify file `login.sh`, use your own default  username and password for hostname that not set in hosts file:
+1.
+2. Modify file `login.sh`, use your own default username and password for hostname that not set in hosts file:
  - user="admin"
  - password="admin123456"
-2. Modify file `hosts`, use your hosts, you can set the special username & password for each hostname, split with blankspace. Will use the default username & password that defined in the login.sh file if the hostname without username & password :
+3. Modify file `hosts`, use your hosts, you can set the special username & password for each hostname, split with blankspace. Will use the default username & password that defined in the login.sh file if the hostname without username & password :
 
     ```
-    Offline
-        Dev
-            1.1.1.0  user1 password1
-            1.1.1.1
-            2.2.2.2
-        Daily
-            3.3.3.3 user2 password2
-            3.3.3.4
+    deploy
+        1.1.1.0  user1  password1
+        1.1.1.1
+        2.2.2.2
+        3.3.3.3  user2  password2
     Online
-        login1.gateway.net
+        login1.gateway.net user3 password3
         login2.gateway.net
     ```
     
-3. Run script `sshgo`, or you can alias `sshgo` command :
- * alias sshgo='/Users/tom/Documents/ssh-auto-login-manage/sshgo'
-
-4. Keyboard shortcuts:
- - exit: q
- - scroll up: k
- - scroll down: j
- - page up: u
- - page down: d
- - select host: space
- - search mode: /
- - exit from search result: q
- - expand tree node: o
- - collapse tree node: c
- - expand all nodes: O
- - collapse all nodes: C
+4. Run script `sshgo`, or you can alias `sshgo` command in your .bash_profile:
+ * alias sshgo='/path/to/ssh-auto-login-manage/sshgo'
 
 ###screenshot
-![screenshot](https://github.com/flying5/ssh-auto-login-manage/blob/master/screenshot.png)
+![screenshot](https://github.com/upton/ssh-auto-login-manage/blob/master/screenshot.png)
 
 -----
 ### 说明
