@@ -5,6 +5,7 @@ import os,sys,re
 import curses
 import locale
 import math
+import re
 from optparse import OptionParser
 locale.setlocale(locale.LC_ALL, '')
 
@@ -125,7 +126,12 @@ class SSHGO:
                         or line_level == tree_level + 1, 'invalid indent,line:' + str(line_number))
             tree_level = line_level
 
-            new_node = {'level':tree_level,'expanded':expand,'line_number':line_number,'line':line_con,'sub_lines':[]}
+            node_infos = re.split(r'\s+', line_con.strip())
+            node_host = node_infos[0] if len(node_infos) == 3 else line_con
+            node_user = node_infos[1] if len(node_infos) == 3 else ''
+            node_pass = node_infos[2] if len(node_infos) == 3 else ''
+
+            new_node = {'level':tree_level,'expanded':expand,'line_number':line_number,'line':node_host,'user':node_user,'password':node_pass,'sub_lines':[]}
             nodes_pool.append(new_node)
             parent = find_parent_line(new_node)
             parent['sub_lines'].append(new_node)
@@ -331,7 +337,9 @@ class SSHGO:
 
             # run script instead of 'ssh'
             ssh = script
-            os.execvp(ssh, [ssh] + re.split(r'[ ]+', node['line']))
+            exe_args = [ssh, node['line'], node['user'], node['password']]
+            
+            os.execvp(ssh, exe_args)
 
     def render_screen(self):
         # clear screen
@@ -439,7 +447,7 @@ if __name__ == '__main__':
     parser.add_option('-c', '--config', help='use specified config file instead of hosts')
     options, args = parser.parse_args(sys.argv)
     host_file = os.path.expanduser(sshHosts)
-    print host_file
+    print 'Use host file : ' + host_file
 
     if options.config is not None:
         host_file = options.config
