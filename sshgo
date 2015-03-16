@@ -337,7 +337,19 @@ class SSHGO:
 
             # run script instead of 'ssh'
             ssh = script
-            exe_args = [ssh, node['line'], node['user'], node['password']]
+
+            host_info = re.split(':', node['line'].strip())
+
+            port = '22'
+            host = ''
+
+            if len(host_info) == 2 :
+                host = host_info[0]
+                port = host_info[1]
+            else:
+                host = host_info[0]
+
+            exe_args = [ssh, host, port, node['user'], node['password']]
             
             os.execvp(ssh, exe_args)
 
