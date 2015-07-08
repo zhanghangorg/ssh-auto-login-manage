@@ -3,16 +3,17 @@ cd "`dirname $0`"
 BASE_HOME=`pwd`
 
 host=$1
+port=$2
 #default user & password
 user='username'
 password='password'
 
-if [ $2 ]; then
-    user=$2
-fi
-
 if [ $3 ]; then
-    password=$3
+    user=$3
 fi
 
-./auto_login.exp $host $user $password
+if [ $4 ]; then
+    password=$4
+fi
+
+./auto_login.exp $host $port $user $password
