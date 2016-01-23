@@ -3,8 +3,11 @@ set host [lindex $argv 0]
 set port [lindex $argv 1]
 set user [lindex $argv 2]
 set password [lindex $argv 3]
+set id_file [lindex $argv 4]
+
 set timeout 10
-spawn ssh -p $port $user@$host
+
+spawn ssh -p $port $user@$host $id_file
 match_max 100000
 
 expect {
@@ -18,7 +21,7 @@ expect {
     }
     "continue connecting"
     {
-        send -- "yes\n"
+        send -- "yes\n";exp_continue
     }
 }
 interact
