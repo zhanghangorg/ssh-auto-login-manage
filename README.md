@@ -9,16 +9,21 @@ Refer to [ssh-auto-login](https://github.com/liaohuqiu/ssh-auto-login) and [sshg
 
 ###How to use
 1. `git clone https://github.com/upton/ssh-auto-login-manage`
-2. Modify file `/path/to/ssh-auto-login-manage/hosts`, use your hosts, you can set the special username & password & id_file for each hostname, split with blankspace:
+2. Modify file `/path/to/ssh-auto-login-manage/hosts`, use your hosts, you can set the special username & password & id_file for each hostname, and support the split with blankspace:
 
     ```
     deploy
-        1.1.1.0  user1  password1
-        2.2.2.2  user2
-        3.3.3.3:50022  user3  password2
-    Online
-        login1.gateway.net user3 password3
-        login2.gateway.net user4 -i /path/to/id_file.pem
+        1.1.1.1  user1  password1
+        2.2.2.2  user2  #use Public key authentication
+        3.3.3.3  user3 -i /path/to/id_file.pem  #use id file to login
+    Online-1
+        4.4.4.4 user password #the first node will default as the below server's jumper server,if below server with section of indent
+        intenal.server # below servers will use 4.4.4.4 as the jumper server
+            10.0.2.10 user3 password3
+            10.0.2.11 user4 password4
+    Online-2
+        5.5.5.5:22222 user5 password5 #use the special port
+        6.6.6.6 user6 password6
     ```  
 4. Run script `./sshgo`, or you can alias `sshgo` command, add the line to the end of ~/.bash_profile and source it:
  * alias sshgo='/path/to/ssh-auto-login-manage/sshgo'
