@@ -8,7 +8,7 @@ You can use these scripts instead of SecureCRT, xshell.
 Refer to [ssh-auto-login](https://github.com/liaohuqiu/ssh-auto-login) and [sshgo](https://github.com/emptyhua/sshgo).
 
 ###How to use
-1. `git clone https://github.com/upton/ssh-auto-login-manage`
+1. `git clone https://github.com/flying5/ssh-auto-login-manage.git`
 2. Modify file `/path/to/ssh-auto-login-manage/hosts`, use your hosts, you can set the special username & password & id_file for each hostname, and support the split with blankspace:
 
     ```
