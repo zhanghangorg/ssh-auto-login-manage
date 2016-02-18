@@ -4,16 +4,12 @@ BASE_HOME=`pwd`
 
 host=$1
 port=$2
-#default user & password
-user='username'
-password='password'
+user=$3
+password=$4
+id_file=$5
 
-if [ $3 ]; then
-    user=$3
+if [ $5 ]; then
+    ./auto_login_with_id_file.exp $host $port $user $id_file
+else
+	./auto_login.exp $host $port $user $password
 fi
-
-if [ $4 ]; then
-    password=$4
-fi
-
-./auto_login.exp $host $port $user $password
