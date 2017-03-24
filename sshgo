@@ -128,7 +128,7 @@ class SSHGO:
             tree_level = line_level
 
             node_infos = re.split(r'\s+', line_con.strip())
-            node_alias = node_infos[0] if len(node_infos) >=3 else 'Unknown'
+            node_alias = node_infos[0] if len(node_infos) > 0 else 'Unknown'
             node_host = node_infos[1] if len(node_infos) >= 3 else line_con
             node_user = node_infos[2] if len(node_infos) >= 3 else ''
             node_pass = node_infos[3] if len(node_infos) >= 4 else ''
@@ -413,7 +413,8 @@ class SSHGO:
         for (index,node,) in enumerate(nodes):
             #linenum = self.top_line_number + index
 
-            line = node['alias'] if node.has_key('alias') else 'Unkonwn'
+            line = node['line']
+            alias = node['alias'] if node.has_key('alias') else line
             if len(node['sub_lines']):
                 line += '(%d)' % len(node['sub_lines'])
 
@@ -426,13 +427,13 @@ class SSHGO:
                 else:
                     prefix += '+'
             else:
-                prefix += 'o'
+                prefix += '   o'
             prefix += ' '
 
             # highlight current line
             if index != self.highlight_line_number:
                 self.screen.addstr(index, 0, prefix, curses.color_pair(self.COLOR_RED))
-                self.screen.addstr(index, len(prefix), line)
+                self.screen.addstr(index, len(prefix), alias)
             else:
                 self.screen.addstr(index, 0, prefix, curses.color_pair(self.COLOR_RED_HIGH))
                 self.screen.addstr(index, len(prefix), line, curses.color_pair(self.COLOR_HIGHLIGHT))
