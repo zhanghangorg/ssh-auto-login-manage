@@ -1,0 +1,33 @@
+#!/bin/sh
+# auto_scp.exp host port user password sfile dfile
+
+if [ $# != 3 ] ; then
+echo "USAGE: $0 host sfile dfile"
+echo " e.g.: $0 10.0.0.1 /root/test /root"
+echo " e.g.: $0 10.0.0.1 /root/test ../"
+exit 1;
+fi
+
+CUR_HOME=`pwd`
+cd "`dirname $0`"
+BASE_HOME=`pwd`
+
+host=$1
+sfile=$2
+dfile=$3
+port=`cat $BASE_HOME/hosts| grep $host | awk '{print $2}' | awk -F : '{print $2}'`
+uname=`cat $BASE_HOME/hosts| grep $host | awk '{print $3}'`
+password=`cat $BASE_HOME/hosts| grep $host | awk '{print $4}'`
+
+if [ ! -n "$port" ]; then
+  port=22
+fi
+
+if [[ ${dfile:0:1} = "/" ]]
+then
+  dfile=$dfile
+else
+  dfile=$CUR_HOME/$dfile
+fi
+
+$BASE_HOME/auto_pull.exp $host $port $uname $password $sfile $dfile
