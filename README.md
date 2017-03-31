@@ -12,13 +12,13 @@ Refer to [ssh-auto-login](https://github.com/liaohuqiu/ssh-auto-login) and [sshg
 2. Modify file `/path/to/ssh-auto-login-manage/hosts`, use your hosts, you can set the special username & password & id_file for each hostname, and support the split with blankspace:
 
     ```
-    deploy 
-        alias 1.1.1.1  user1  password1
+    group-A 
+        alias 1.1.1.1  user1  password1
         alias 2.2.2.2  user2  #use Public key authentication
         alias 3.3.3.3  user3 -i /path/to/id_file.pem  #use id file to login
-    Online-1
+    group-B
         alias 4.4.4.4 user password
-    Online-2
+    group-C
         alias 5.5.5.5:22222 user5 password5 #use the special port
         alias 6.6.6.6 user6 password6
     ```  
