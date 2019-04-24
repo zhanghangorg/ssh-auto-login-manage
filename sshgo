@@ -51,6 +51,8 @@ def _get_known_hosts():
     return _dedup(hosts)
 
 class SSHGO:
+    
+    TREE_STATUS = 0  # 0 CLOSE 1 OPEN
 
     UP = -1
     DOWN = 1
@@ -206,6 +208,9 @@ class SSHGO:
         curses.init_pair(6, curses.COLOR_BLACK, curses.COLOR_BLACK)
         self.COLOR_BBG = 6
 
+        if self.TREE_STATUS == 0:
+            self.close_all()
+        
         self.run()
 
     def run(self):
